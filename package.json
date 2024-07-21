@@ -1,0 +1,17 @@
+{
+  "name": "node-http-discovery",
+  "version": "1.0.0",
+  "description": "Tools to discover/call external API with OpenApi documentation, used to replace OG classical http handler",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsx ./index.ts",
+    "dev": "tsx watch ./index.ts",
+    "start": "node dist/index.js"
+  },
+  "author": "betaucourt@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  }
+}
