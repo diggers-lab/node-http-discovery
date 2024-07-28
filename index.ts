@@ -1,57 +1,114 @@
-import getSwaggerEndPoint from "src/endPoint";
+import { RequestConfig, RequestService} from "./src/request.service";
 
-test();
 
-interface toto {
-    test: string;
-
-}
-
-async function test() {
-
-  const test = await getSwaggerEndPoint({
-      "name": "test",
-      "description": "",
-      "url": "http://localhost:4200/api/test-json", // this test api is available in test folder
-      "type": "Swagger",
-      "security": { // Security will be added for each route that requires it
-          key: 'apiKey',
-          value: 'teast'
-      }
-    })
-  const route = test.getRoutes().find((route) => route.operationId.includes('AppController_postTest2')).operationId; // retrieve this specific route by operationId
-  console.log('route :>> ', route); // details of the specific route
-  console.log('test :>> ', test.endPoint); // details of the whole endpoint in case you wanna use fetch by yourself
-
-  const toto = await test.sendRequest<toto>(route, {
-    queryParameters: new Map<string, string>([['test', 'test']]), // will throw error if required parameter is missing
-    urlParameters: new Map<string, string>([['tata', 'tata']]),// will throw error if required parameter is missing
-    headers: new Map<string, string>([['tata', 'tata']]),// free to use, no check, but do not use with reserved headers or security
-    body: { // Free to use, no check
-      toto: 'toto',
-    },
-  });
-  console.log('toto :>> ', toto);
-
-}
-
-async function test2() {
-  const test = await getSwaggerEndPoint({
+const config = {
     "name": "test",
     "description": "",
-    "url": "http://localhost:4200/api/test-json",
+    "url": "http://localhost:4200/api/test-json", // this test api is available in test folder
     "type": "Swagger",
-  })
-  test.setSecurity('apiKey', 'teast');
-  const route = test.getRoutes().find((route) => route.operationId.includes('AppController_postTest2')).operationId;
-  console.log('route :>> ', route);
+    "security": { // Security will be added for each route that requires it
+        key: 'apiKey',
+        value: 'teast'
+    }
+}
 
-  const toto = await test.sendRequest<toto>(route, {
-    queryParameters: new Map<string, string>([['test', 'test']]),
-    urlParameters: new Map<string, string>([['tata', 'tata']]),
-    body: {
-      toto: 'toto',
-    },
-  });
-  console.log('toto :>> ', toto);
+testPreparedRequest(config);
+
+async function testPreparedRequest(config) {
+    const requestService = new RequestService();
+
+    requestService.attachLogger(console.log);
+    await requestService.addEndPoint(config);
+
+    // First part going to throw an error as a parameter is missing
+    const requetToTest: RequestConfig = {
+        name: "test",
+        operationId: "AppController_postTest2",
+        data: {
+            queryParameters: {
+                test: "test"
+            },
+            urlParameters: {
+            },
+            headers: {
+            },
+            body: {
+
+            }
+        }
+    }
+
+    const requestId = requestService.prepareRequest(requetToTest);
+    console.log('requestId :>> ', requestId);
+
+    const result = await requestService.executePreparedRequest(requestId);
+    console.log('result :>> ', result);
+
+    const logTest = requestService.logService.getRequest(requestId);
+    console.log("logTest :>> ", logTest);
+    // First part going to throw an error as a parameter is missing
+
+    // Second part will work fine
+    const secondRequest = {
+        name: "test",
+        operationId: "AppController_postTest2",
+        data: {
+            queryParameters: {
+                test: "test"
+            },
+            urlParameters: {
+                tata: "tata"
+            },
+            headers: {
+            },
+            body: {
+
+            }
+        }
+    }
+
+    const secondRequestId = requestService.prepareRequest(secondRequest);
+    console.log('secondRequestId :>> ', secondRequestId);
+
+    const secondResult = await requestService.executePreparedRequest(secondRequestId);
+    console.log('secondResult :>> ', secondResult);
+
+    const logTest2 = requestService.logService.getRequest(secondRequestId);
+    console.log("logTest2 :>> ", logTest2);
+    // Second part will work fine
+
+    console.log("openAPIDefinition", requestService.getEndPointOpenAPIDefinition("test"));
+
+}
+
+// testSimpleRequest(config);
+
+async function testSimpleRequest(config) {
+
+    const requestService = new RequestService();
+    await requestService.addEndPoint(config);
+
+    const requetToTest: RequestConfig = {
+        name: "test",
+        operationId: "AppController_postTest2",
+        data: {
+            queryParameters: {
+                test: "test"
+            },
+            urlParameters: {
+                tata: "tata"
+            },
+            headers: {
+            },
+            body: {
+
+            }
+        }
+    }
+
+    const result = await requestService.executeRequest(requetToTest);
+    console.log('result :>> ', result);
+
+    // const test = requestService.getEndPoint(config.name);
+    // console.log('test :>> ', test);
 }

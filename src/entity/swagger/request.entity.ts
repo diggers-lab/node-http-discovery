@@ -1,9 +1,10 @@
 export class RequestInterface {
-  // name: string;
+  name: string;
+  operationId: string;
   preparedDate: Date;
   executedDate: Date;
   BaseRequest: any;
-  parameters: any;
+  data: any;
   // poolName?: string;
   // group?: string;
   // groupOrder?: number;
