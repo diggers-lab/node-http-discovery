@@ -7,7 +7,7 @@
   "scripts": {
     "build:esm": "tsc -p tsconfig.esm.json && npm run rename",
     "build:cjs": "tsc -p tsconfig.cjs.json",
-    "rename": "powershell -ExecutionPolicy Bypass -File ./scripts/fix-msj.ps1",
+    "rename": "node ./scripts/fix-msj.js",
     "build": "npm run build:cjs && npm run build:esm "
   },
   "author": "betaucourt@gmail.com",
