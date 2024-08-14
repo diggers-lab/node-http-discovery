@@ -1,6 +1,6 @@
-import { EndPointType } from "./entity/swagger/routes.entity";
-import { SwaggerJson } from "./entity/swagger/swaggerJson.entity";
-import { SwaggerEndPoint } from "./endpoint/swagger/swaggerEndpoint.service";
+import { EndPointType } from "src/entity/swagger/routes.entity";
+import { SwaggerJson } from "src/entity/swagger/swaggerJson.entity";
+import { SwaggerEndPoint } from "src/endpoint/swagger/swaggerEndpoint.service";
 
 export default async function getSwaggerEndPoint(endpoint: EndPointType): Promise<SwaggerEndPoint> {
     let tmp = await getSwagger(endpoint.url, endpoint.security ? endpoint.security : undefined);

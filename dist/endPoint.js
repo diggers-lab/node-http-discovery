@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = getSwaggerEndPoint;
-const swaggerEndpoint_service_1 = require("./endpoint/swagger/swaggerEndpoint.service");
+const swaggerEndpoint_service_1 = require("src/endpoint/swagger/swaggerEndpoint.service");
 async function getSwaggerEndPoint(endpoint) {
     let tmp = await getSwagger(endpoint.url, endpoint.security ? endpoint.security : undefined);
     tmp.config = endpoint;
