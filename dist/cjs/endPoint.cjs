@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = getSwaggerEndPoint;
-const swaggerEndpoint_service_1 = require("./endpoint/swagger/swaggerEndpoint.service");
+const swaggerEndpoint_service_1 = require("./endpoint/swagger/swaggerEndpoint.service.cjs");
 function getSwaggerEndPoint(endpoint) {
     return __awaiter(this, void 0, void 0, function* () {
         let tmp = yield getSwagger(endpoint.url, endpoint.security ? endpoint.security : undefined);

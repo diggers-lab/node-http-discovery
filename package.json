@@ -2,12 +2,13 @@
   "name": "@node-http-discovery/light_version",
   "version": "1.0.0",
   "description": "Tools to discover/call external API with OpenApi documentation, used to replace OG classical http handler",
-  "main": "dist/cjs/endPoint.js",
+  "main": "dist/cjs/endPoint.cjs",
   "module": "dist/esm/endPoint.mjs",
   "scripts": {
-    "build:esm": "tsc -p tsconfig.esm.json && npm run rename",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "rename": "node ./scripts/fix-msj.cjs",
+    "build:esm": "tsc -p tsconfig.esm.json && npm run rename-mjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json && npm run rename-cjs",
+    "rename-mjs": "node ./scripts/fix-msj.cjs",
+    "rename-cjs": "node ./scripts/fix-cjs.cjs",
     "build": "npm run build:cjs && npm run build:esm "
   },
   "type": "module",
@@ -15,7 +16,7 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "require": "./dist/cjs/endPoint.js",
+      "require": "./dist/cjs/endPoint.cjs",
       "import": "./dist/esm/endPoint.mjs"
     }
   },
