@@ -15,7 +15,7 @@ export class BasicAuthEntity extends BaseAuthEntity {
     this.name = name;
     this.password = password;
   }
-  name: string;
+  declare name: string;
   password: string;
   setSecurity(values: any): void {
     throw new Error('Method not implemented.');
@@ -29,7 +29,7 @@ export class BasicAuthEntity extends BaseAuthEntity {
 export class KeyAuthEntity extends BaseAuthEntity {
   type: string;
   in: string;
-  name: string;
+  declare name: string;
   cookie: boolean;
   value?: string;
   constructor(

@@ -7,7 +7,7 @@ import { RequestDataInterface } from '../../entity/swagger/request.entity';
 import { SendHttpRequestUtil } from '../../util/sendHttp.util';
 
 export class SwaggerEndPoint extends AbstractEndPoint {
-  item: SwaggerJson;
+  declare item: SwaggerJson;
   constructor(swaggerJson: SwaggerJson) {
     super(
       swaggerJson.config.type,
@@ -30,11 +30,11 @@ export class SwaggerEndPoint extends AbstractEndPoint {
         }
       }
     }
-    const requsetResult = await SendHttpRequestUtil.sendEndPointRequest(route, this.endPoint, parameters);
+    const requestResult = await SendHttpRequestUtil.sendEndPointRequest(route, this.endPoint, parameters);
     try {
-      return await requsetResult.json() as T;
+      return await requestResult.json() as T;
     } catch (error) {
-      return await requsetResult.text();
+      return await requestResult.text();
     }
   }
 
