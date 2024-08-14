@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SwaggerEndPoint = void 0;
 const endPoint_abstract_1 = require("../endPoint.abstract");
@@ -10,37 +19,41 @@ class SwaggerEndPoint extends endPoint_abstract_1.AbstractEndPoint {
         super(swaggerJson.config.type, swaggerJson.config.url, swaggerJson.config.name, swaggerJson.config.description);
         this.item = swaggerJson;
     }
-    async sendRequest(routeName, parameters) {
-        const route = this.getRoute(routeName);
-        if (route.security && route.security.length > 0) {
-            for (const security of route.security) {
-                if (security instanceof auth_entity_1.KeyAuthEntity) {
-                    if (!parameters.headers) {
-                        parameters.headers = new Map();
+    sendRequest(routeName, parameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const route = this.getRoute(routeName);
+            if (route.security && route.security.length > 0) {
+                for (const security of route.security) {
+                    if (security instanceof auth_entity_1.KeyAuthEntity) {
+                        if (!parameters.headers) {
+                            parameters.headers = new Map();
+                        }
+                        parameters.headers.set(security.name, security.value);
                     }
-                    parameters.headers.set(security.name, security.value);
                 }
             }
-        }
-        const requsetResult = await sendHttp_util_1.SendHttpRequestUtil.sendEndPointRequest(route, this.endPoint, parameters);
-        try {
-            return await requsetResult.json();
-        }
-        catch (error) {
-            return await requsetResult.text();
-        }
+            const requsetResult = yield sendHttp_util_1.SendHttpRequestUtil.sendEndPointRequest(route, this.endPoint, parameters);
+            try {
+                return yield requsetResult.json();
+            }
+            catch (error) {
+                return yield requsetResult.text();
+            }
+        });
     }
-    async generate() {
-        try {
-            this.getRoutePoolbasics();
-            this.parseSecurityDefinitions();
-            this.endPoint.routes = this.getRoutesFromJson(this.item);
-        }
-        catch (error) {
-            console.log('error :>> ', error);
-            throw new Error('Error while generating the Swagger endPoint');
-        }
-        return this.endPoint;
+    generate() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                this.getRoutePoolbasics();
+                this.parseSecurityDefinitions();
+                this.endPoint.routes = this.getRoutesFromJson(this.item);
+            }
+            catch (error) {
+                console.log('error :>> ', error);
+                throw new Error('Error while generating the Swagger endPoint');
+            }
+            return this.endPoint;
+        });
     }
     setSecurity(method, security) {
         if (this.endPoint.securities && this.endPoint.securities.length >= 1) {
@@ -53,7 +66,8 @@ class SwaggerEndPoint extends endPoint_abstract_1.AbstractEndPoint {
         }
     }
     parseSecurityDefinitions() {
-        const securityDefinitions = this.item.components?.securitySchemes;
+        var _a, _b;
+        const securityDefinitions = (_a = this.item.components) === null || _a === void 0 ? void 0 : _a.securitySchemes;
         const securityEntities = [];
         if (!securityDefinitions) {
             return securityEntities;
@@ -76,7 +90,7 @@ class SwaggerEndPoint extends endPoint_abstract_1.AbstractEndPoint {
                     securityEntity = new auth_entity_1.KeyAuthEntity('apiKey', definition.type, definition.in, definition.name, false);
                     break;
                 case 'oauth2':
-                    securityEntity = new auth_entity_1.CustomAuthEntity('oauth2', definition.flows?.authorizationCode);
+                    securityEntity = new auth_entity_1.CustomAuthEntity('oauth2', (_b = definition.flows) === null || _b === void 0 ? void 0 : _b.authorizationCode);
                     break;
                 default:
                     securityEntity = new auth_entity_1.CustomAuthEntity('custom', definition);
