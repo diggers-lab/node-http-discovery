@@ -27,9 +27,7 @@
     "url": "git+https://github.com/diggers-lab/node-http-discovery/tree/light_version.git"
   },
   "files": [
-    "dist/**/*.js",
-    "dist/**/*.d.ts",
-    "dist/**/*.mjs",
+    "dist/",
     "src/**/*.ts"
   ]
 }
