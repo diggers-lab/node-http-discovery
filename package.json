@@ -29,6 +29,7 @@
   "files": [
     "dist/**/*.js",
     "dist/**/*.d.ts",
+    "dist/**/*.mjs",
     "src/**/*.ts"
   ]
 }
