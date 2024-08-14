@@ -1,10 +1,10 @@
 {
-  "name": "node-http-discovery",
+  "name": "@node-http-discovery/light_version",
   "version": "1.0.0",
   "description": "Tools to discover/call external API with OpenApi documentation, used to replace OG classical http handler",
-  "main": "index.js",
+  "main": "dist/endPoint.js",
   "scripts": {
-    "build": "tsx ./index.ts",
+    "build": "tsc",
     "dev": "tsx watch ./index.ts",
     "start": "node dist/index.js"
   },
