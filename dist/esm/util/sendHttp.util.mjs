@@ -1,4 +1,4 @@
-import { EndPointRequestUtil } from "./endPointRequest.util";
+import { EndPointRequestUtil } from "./endPointRequest.util.mjs";
 export class SendHttpRequestUtil {
     static async sendRequest(request) {
         const options = {

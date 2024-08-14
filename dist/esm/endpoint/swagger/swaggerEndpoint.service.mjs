@@ -1,7 +1,7 @@
-import { AbstractEndPoint } from '../endPoint.abstract';
-import { ParameterInterface, ResponseInterface, RouteEntity, RoutePoolEntity } from '../../entity/swagger/routes.entity';
-import { BasicAuthEntity, BearerAuthEntity, CustomAuthEntity, KeyAuthEntity } from '../../entity/swagger/auth.entity';
-import { SendHttpRequestUtil } from '../../util/sendHttp.util';
+import { AbstractEndPoint } from '../endPoint.abstract.mjs';
+import { ParameterInterface, ResponseInterface, RouteEntity, RoutePoolEntity } from '../../entity/swagger/routes.entity.mjs';
+import { BasicAuthEntity, BearerAuthEntity, CustomAuthEntity, KeyAuthEntity } from '../../entity/swagger/auth.entity.mjs';
+import { SendHttpRequestUtil } from '../../util/sendHttp.util.mjs';
 export class SwaggerEndPoint extends AbstractEndPoint {
     constructor(swaggerJson) {
         super(swaggerJson.config.type, swaggerJson.config.url, swaggerJson.config.name, swaggerJson.config.description);

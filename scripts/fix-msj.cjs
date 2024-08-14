@@ -27,7 +27,16 @@ function processDirectory(directory) {
                             return console.log('Unable to read file: ' + err);
                         }
 
-                        const result = data.replace(/\.js'/g, ".mjs'");
+                        // const result = data.replace(/\.js'/g, ".mjs'");
+                        // update all imports from "file" without extensions to "file.mjs"
+                        const result = data.replace(/(import\s+.*\s+from\s+['"])([^'"]+)(['"])/g, (match, p1, p2, p3) => {
+                            if (p2.endsWith('.js')) {
+                                return p1 + p2.slice(0, -3) + '.mjs' + p3;
+                            } else if (!p2.endsWith('.mjs')) {
+                                return p1 + p2 + '.mjs' + p3;
+                            }
+                        });
+
 
                         fs.writeFile(itemPath, result, 'utf8', (err) => {
                             if (err) return console.log('Unable to write file: ' + err);

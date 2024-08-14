@@ -1,4 +1,4 @@
-import { SwaggerEndPoint } from "./endpoint/swagger/swaggerEndpoint.service";
+import { SwaggerEndPoint } from "./endpoint/swagger/swaggerEndpoint.service.mjs";
 export default async function getSwaggerEndPoint(endpoint) {
     let tmp = await getSwagger(endpoint.url, endpoint.security ? endpoint.security : undefined);
     tmp.config = endpoint;
