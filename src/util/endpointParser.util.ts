@@ -1,4 +1,4 @@
-import { EndPointType } from "src/entity/swagger/routes.entity";
+import { EndPointType } from "../entity/swagger/routes.entity";
 
 export default class EndPointparser {
     static async getEndPointData(swaggerEndpoint: EndPointType) {

@@ -1,5 +1,5 @@
-import { BasicDataInterface, RequestDataInterface } from "src/entity/swagger/request.entity";
-import { RouteEntity, RoutePoolEntity } from "src/entity/swagger/routes.entity";
+import { BasicDataInterface, RequestDataInterface } from "../entity/swagger/request.entity";
+import { RouteEntity, RoutePoolEntity } from "../entity/swagger/routes.entity";
 import { EndPointRequestUtil } from "./endPointRequest.util";
 
 

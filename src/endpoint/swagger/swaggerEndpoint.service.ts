@@ -1,10 +1,10 @@
 
-import { SwaggerJson } from 'src/entity/swagger/swaggerJson.entity';
+import { SwaggerJson } from '../../entity/swagger/swaggerJson.entity';
 import { AbstractEndPoint } from '../endPoint.abstract';
-import { ParameterInterface, ResponseInterface, RouteEntity, RoutePoolEntity } from 'src/entity/swagger/routes.entity';
-import { BaseAuthEntity, BasicAuthEntity, BearerAuthEntity, CustomAuthEntity, KeyAuthEntity } from 'src/entity/swagger/auth.entity';
-import { RequestDataInterface } from 'src/entity/swagger/request.entity';
-import { SendHttpRequestUtil } from 'src/util/sendHttp.util';
+import { ParameterInterface, ResponseInterface, RouteEntity, RoutePoolEntity } from '../../entity/swagger/routes.entity';
+import { BaseAuthEntity, BasicAuthEntity, BearerAuthEntity, CustomAuthEntity, KeyAuthEntity } from '../../entity/swagger/auth.entity';
+import { RequestDataInterface } from '../../entity/swagger/request.entity';
+import { SendHttpRequestUtil } from '../../util/sendHttp.util';
 
 export class SwaggerEndPoint extends AbstractEndPoint {
   item: SwaggerJson;

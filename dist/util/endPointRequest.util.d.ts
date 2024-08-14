@@ -1,4 +1,4 @@
-import { RouteEntity } from "src/entity/swagger/routes.entity";
+import { RouteEntity } from "../entity/swagger/routes.entity";
 export declare class EndPointRequestUtil {
     static parseUrlParameters(route: RouteEntity, data: Map<string, string>): string;
     static parseQueryParameters(route: RouteEntity, data: Map<string, string>): URLSearchParams;

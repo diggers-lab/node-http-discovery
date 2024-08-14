@@ -1,4 +1,4 @@
-import { RouteEntity, RoutePoolEntity } from "src/entity/swagger/routes.entity";
+import { RouteEntity, RoutePoolEntity } from "../entity/swagger/routes.entity";
 export declare abstract class AbstractEndPoint {
     item: any;
     name: string;

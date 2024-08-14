@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SwaggerEndPoint = void 0;
 const endPoint_abstract_1 = require("../endPoint.abstract");
-const routes_entity_1 = require("src/entity/swagger/routes.entity");
-const auth_entity_1 = require("src/entity/swagger/auth.entity");
-const sendHttp_util_1 = require("src/util/sendHttp.util");
+const routes_entity_1 = require("../../entity/swagger/routes.entity");
+const auth_entity_1 = require("../../entity/swagger/auth.entity");
+const sendHttp_util_1 = require("../../util/sendHttp.util");
 class SwaggerEndPoint extends endPoint_abstract_1.AbstractEndPoint {
     constructor(swaggerJson) {
         super(swaggerJson.config.type, swaggerJson.config.url, swaggerJson.config.name, swaggerJson.config.description);

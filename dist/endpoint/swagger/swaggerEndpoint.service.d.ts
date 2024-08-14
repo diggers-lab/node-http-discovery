@@ -1,6 +1,6 @@
-import { SwaggerJson } from 'src/entity/swagger/swaggerJson.entity';
+import { SwaggerJson } from '../../entity/swagger/swaggerJson.entity';
 import { AbstractEndPoint } from '../endPoint.abstract';
-import { RequestDataInterface } from 'src/entity/swagger/request.entity';
+import { RequestDataInterface } from '../../entity/swagger/request.entity';
 export declare class SwaggerEndPoint extends AbstractEndPoint {
     item: SwaggerJson;
     constructor(swaggerJson: SwaggerJson);
