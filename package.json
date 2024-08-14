@@ -13,5 +13,12 @@
   "devDependencies": {
     "tsx": "^4.16.2",
     "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "node-http-discovery": "file:"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diggers-lab/node-http-discovery/tree/light_version.git"
   }
 }
