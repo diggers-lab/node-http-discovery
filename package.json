@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Tools to discover/call external API with OpenApi documentation, used to replace OG classical http handler",
   "main": "dist/cjs/endPoint.js",
-  "module": "dist/esm/endPoint.mjs",
+  "module": "dist/esm/endPoint.js",
   "scripts": {
-    "build:esm": "tsc -p tsconfig.esm.json && npm run rename",
+    "build:esm": "tsc -p tsconfig.esm.json",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "rename": "node ./scripts/fix-msj.js",
     "build": "npm run build:cjs && npm run build:esm "
@@ -15,7 +15,7 @@
   "exports": {
     ".": {
       "require": "./dist/cjs/endPoint.js",
-      "import": "./dist/esm/endPoint.mjs"
+      "import": "./dist/esm/endPoint.js"
     }
   },
   "devDependencies": {
