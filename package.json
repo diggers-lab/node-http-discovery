@@ -2,7 +2,7 @@
   "name": "@node-http-discovery/light_version",
   "version": "1.0.0",
   "description": "Tools to discover/call external API with OpenApi documentation, used to replace OG classical http handler",
-  "main": "dist/endPoint.js",
+  "main": "dist/index",
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch ./index.ts",
@@ -17,5 +17,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/diggers-lab/node-http-discovery/tree/light_version.git"
-  }
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts"
+  ]
 }
